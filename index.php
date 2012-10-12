@@ -21,7 +21,7 @@ include_once "include/get-tables.php" ;
     $i = 0 ;
     foreach ($tables as $table_id => $table) {
       
-      $dl =  "<div class='table' id='table_{$table_id}'>" ;
+      $dl =  "<div class='table col-{$i}' id='table_{$table_id}'>" ;
       $dl .= "<h3>{$table['table_name']}</h3>" ;
       $dl .= "<ul data-table-id='{$table_id}'>" ;
       if ($table['guests']) : foreach ($table['guests'] as $guest) {
@@ -34,10 +34,6 @@ include_once "include/get-tables.php" ;
       $dl .= $table_id == 1 ? "<div class='clear'></div>" : '' ;
       
       echo $dl ;
-      
-      if ($i == 3) {
-        echo "<div class='clear'></div>" ;
-      }
       $i = $i >= 3 ? 1 : $i + 1;
     }
     ?>	
