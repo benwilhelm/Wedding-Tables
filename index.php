@@ -21,15 +21,9 @@ include_once "include/get-tables.php" ;
     $i = 0 ;
     foreach ($tables as $table_id => $table) {
     
-      $ul_class = sizeof($table['guests']) > 10 ? 'overloaded' : '' ;
-      
       $dl =  "<div class='table col-{$i}' id='table_{$table_id}'>" ;
       $dl .= "<h3>{$table['table_name']}</h3>" ;
       $dl .= "<ul data-table-id='{$table_id}' class='{$ul_class}'>" ;
-      if ($table['guests']) : foreach ($table['guests'] as $guest) {
-        $gid = $guest['id'] ;
-        $dl .= "<li id='guest_{$gid}' data-guest-id='{$gid}'>{$guest['name']}</li>" ;
-      } endif ;
       $dl .= "</ul>" ;
       $dl .= "</div>" ;
       
