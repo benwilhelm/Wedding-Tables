@@ -18,18 +18,27 @@ include_once "include/get-tables.php" ;
 
   <div id="container">
     <?php
+    $i = 0 ;
     foreach ($tables as $table_id => $table) {
-      $dl =  "<dl class='table' id='table_{$table_id}'>" ;
-      $dl .= "<dt>{$table['table_name']}</dt>" ;
+      
+      $dl =  "<div class='table' id='table_{$table_id}'>" ;
+      $dl .= "<h3>{$table['table_name']}</h3>" ;
+      $dl .= "<ul>" ;
       if ($table['guests']) : foreach ($table['guests'] as $guest) {
         $gid = $guest['id'] ;
-        $dl .= "<dd id='guest_{$gid}'>{$guest['name']}</dd>" ;
+        $dl .= "<li id='guest_{$gid}'>{$guest['name']}</li>" ;
       } endif ;
-      $dl .= "</dl>" ;
+      $dl .= "</ul>" ;
+      $dl .= "</div>" ;
       
       $dl .= $table_id == 1 ? "<div class='clear'></div>" : '' ;
       
       echo $dl ;
+      
+      if ($i == 3) {
+        echo "<div class='clear'></div>" ;
+      }
+      $i = $i >= 3 ? 1 : $i + 1;
     }
     ?>	
 	</div><!-- #container -->

@@ -1,3 +1,5 @@
 $(document).ready(function(){
-  console.log('ready') ;
+  $('div.table ul').sortable({
+    connectWith: "div.table ul" 
+  }).disableSelection() ;
 }) ;
