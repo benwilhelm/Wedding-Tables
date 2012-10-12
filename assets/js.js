@@ -1,30 +1,9 @@
 var listener ;
+var pending = {} ;
 startListening() ;
 
 $(document).ready(function(){
-  $('div.table ul').sortable({
-    connectWith: "div.table ul" ,
-    start: function(event,ui) {
-      stopListening() ;
-    },
-    update: function(event,ui) {
-      var tid = $(this).attr('data-table-id') ;
-      var bds = $(this).sortable('toArray') ;
-      var params = {'table_id':tid,'bodies':bds} ;
-      $.post('update-table-ids.php',params) ;
-      $(this).checkLoad() ;
-    },
-    stop: function (event,ui) {
-      startListening() ;
-    },
-    over: function(event,ui) {
-      $(this).addClass('hover') ;
-    },
-    out: function(event,ui) {
-      $(this).removeClass('hover') ;
-    }
-  }).disableSelection() ;
-  
+  setHandlers() ;  
 }) ;
 
 
@@ -38,8 +17,8 @@ $.fn.checkLoad = function() {
 }
 
 function startListening() {
+  clearInterval(listener) ;
   listener = setInterval(function(){
-    console.log('  poll') ;
     var tables ;
     $.get('tables.php',function(data){
       tables = $.parseJSON(data) ;
@@ -59,6 +38,7 @@ function startListening() {
         }
         $list.checkLoad() ;
       }
+      setHandlers() ;
     }) ;
   },1000) ;
 }
@@ -66,4 +46,29 @@ function startListening() {
 function stopListening() {
   clearInterval(listener) ;
   listener = false ;
+}
+
+function setHandlers() {
+  $('div.table ul').sortable({
+    connectWith: "div.table ul" ,
+    start: function(event,ui) {
+      stopListening() ;
+    },
+    update: function(event,ui) {
+      var $list = $(this) ;
+      var tid = $(this).attr('data-table-id') ;
+      var bds = $(this).sortable('toArray') ;
+      var params = {'table_id':tid,'bodies':bds} ;
+      $.post('update-table-ids.php',params,function(data){
+        startListening() ;
+        $list.checkLoad() ;
+      }) ;
+    },
+    over: function(event,ui) {
+      $(this).addClass('hover') ;
+    },
+    out: function(event,ui) {
+      $(this).removeClass('hover') ;
+    }
+  }).disableSelection() ;
 }
