@@ -23,10 +23,10 @@ include_once "include/get-tables.php" ;
       
       $dl =  "<div class='table' id='table_{$table_id}'>" ;
       $dl .= "<h3>{$table['table_name']}</h3>" ;
-      $dl .= "<ul>" ;
+      $dl .= "<ul data-table-id='{$table_id}'>" ;
       if ($table['guests']) : foreach ($table['guests'] as $guest) {
         $gid = $guest['id'] ;
-        $dl .= "<li id='guest_{$gid}'>{$guest['name']}</li>" ;
+        $dl .= "<li id='guest_{$gid}' data-guest-id='{$gid}'>{$guest['name']}</li>" ;
       } endif ;
       $dl .= "</ul>" ;
       $dl .= "</div>" ;
