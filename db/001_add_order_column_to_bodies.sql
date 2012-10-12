@@ -1,0 +1,1 @@
+ALTER TABLE  `bodies` ADD  `display_order` INT NOT NULL

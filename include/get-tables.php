@@ -5,7 +5,7 @@ $sql = "SELECT `groups`.name as table_name,
         bodies.*
         FROM `groups` LEFT JOIN bodies
          ON `groups`.id = bodies.group_id
-        ORDER BY table_id" ;
+        ORDER BY table_id, display_order" ;
 $rslt = $dbc->query($sql) ;
 while ($body = $rslt->fetch_array()) {
   $tables[$body['table_id']]['table_name'] = $body['table_name'] ;
