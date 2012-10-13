@@ -9,10 +9,14 @@ $(document).ready(function(){
 
 $.fn.checkLoad = function() {
   var count = this.find('li').length ;
-  if (count > 10) {
-    $(this).addClass('overloaded') ;
-  } else {
+  if (count == 10) {
+    $(this).addClass('capacity') ;
     $(this).removeClass('overloaded') ;
+  } else if (count > 10) {
+    $(this).addClass('overloaded') ;
+    $(this).removeClass('capacity') ;
+  } else {
+    $(this).removeClass('overloaded capacity') ;
   }  
 }
 

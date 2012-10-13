@@ -16,9 +16,9 @@ div.table li { cursor: pointer; margin-left: 0; padding: 3px 5px; }
 div.col-1 { clear:both; }
 div.col-3 { margin-right: 0; }
 
-
-div.table ul.overloaded { background-color: #FFA ; }
-#table_1 ul.overloaded { background-color: inherit; }
+div.table ul.capacity { background-color: #FFA ; }
+div.table ul.overloaded { background-color: #FAA ; }
+#table_1 ul.capacity, #table_1 ul.overloaded { background-color: inherit; }
 
 div.table ul.hover { background-color: #DFD; }
 
