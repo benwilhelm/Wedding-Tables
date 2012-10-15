@@ -17,6 +17,7 @@ include_once "include/get-tables.php" ;
 	<body>
 
   <div id="container">
+    <p><a href="textout.php">Download txt</a></p>
     <?php
     $i = 0 ;
     foreach ($tables as $table_id => $table) {
