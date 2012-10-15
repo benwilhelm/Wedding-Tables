@@ -10,9 +10,9 @@ foreach ($tables as $table) {
   echo "\n{$table['table_name']}\n" ;
   echo "================================\n" ;
   
-  foreach ($table['guests'] as $guest) {
+  if ($table['guests']): foreach ($table['guests'] as $guest) {
     echo $guest['name'] . "\n" ;
-  }
+  } endif ;
 }
 
 exit ;
